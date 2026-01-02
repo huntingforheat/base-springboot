@@ -1,0 +1,88 @@
+spring:
+  profiles:
+    active: local
+---
+spring:
+  application:
+    name: demo
+  config:
+    activate:
+      on-profile:
+        - local
+        - dev
+        - prod
+  datasource:
+    hikari:
+      driver-class-name: org.mariadb.jdbc.Driver
+      pool-name: Hikari Connection Pool
+      maximum-pool-size: 3
+  jpa:
+    database: mysql
+    open-in-view: false
+    # JPA가 데이터베이스 DDL을 생성할지 여부를 지정합니다.
+    generate-ddl: true
+    hibernate:
+      # Hibernate가 DDL을 자동으로 생성, 업데이트, 삭제할지 여부를 지정합니다.
+      ddl-auto: none
+    properties:
+      hibernate:
+        show_sql: true
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 10MB
+  mvc:
+    static-path-pattern: /static/**
+  web:
+    resources:
+      static-locations:
+        - classpath:/static/
+  jwt:
+    secret: asdfghdfhdfgergewnmhgtyjytuj5u6ftgh3fwefghrtyh5yhj567j67m6tyhujmntymnj5mn5jk5jhgtyhjyhn6n69
+logging:
+  config: classpath:log4j2/log4j2.yaml
+
+# local
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+  datasource:
+    url: jdbc:mariadb://192.168.0.132:3307/practice
+    username: root
+    password: mAke1357!@
+server:
+  port: 8090
+logging:
+  level:
+    org.springframework.security: debug
+
+# dev
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+  datasource:
+    url: jdbc:mariadb://192.168.0.132:3307/practice
+    username: root
+    password: mAke1357!@
+server:
+  port: 8091
+
+# prod
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+  datasource:
+    url: jdbc:mariadb://192.168.0.132:3307/practice
+    username: root
+    password: mAke1357!@
+server:
+  port: 8092
+logging:
+  level:
+    root: info

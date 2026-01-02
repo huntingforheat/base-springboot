@@ -1,0 +1,73 @@
+Conficuation:
+  status: warn
+  Properties:
+    Property:
+      - name: log-path
+        value: "/apps/practice/logs/user-app"
+      - name: layout-pattern
+        value: "%d{yyyy-MM-dd HH:mm:ss.SSS}{Asia/Seoul} [ %highlight{%-5level}] [%style{%t}{bright,blue}] %style{%C{1.}}{bright,yellow}:: %msg%n%throwable"
+      - name: layout-pattern2
+        value: "[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} {%t} %c{1.} - %msg%n"
+      - name: charset-UTF-8
+        value: "UTF-8"
+  # 로그 기록방식 정의
+  Appenders:
+    # 콘솔에 로그 메시지를 작성하는 방식 정의
+    Console:
+      name: Console_Appender
+      target: SYSTEM_OUT
+      PatternLayout:
+        charset: ${charset-UTF-8}
+        pattern: ${layout-pattern}
+    # 로그를 파일에 기록하는 방식 정의
+    File:
+      name: File_Appender
+      fileName: ${log-path}/user-app-logfile.log
+      PatternLayout:
+        charset: ${charset-UTF-8}
+        pattern: ${layout-pattern}
+    # 로그 파일들을 압축파일로 출력하는 방식 정의
+    RollingFile:
+      name: RollingFile_Appender
+      fileName: ${log-path}/user-app-rolling.log
+      filePattern: "${log-path}/archive/rollingFile.log.%d{yyyy-MM-dd-hh-mm}_%i.gz"
+      PatternLayout:
+        charset: ${charset-UTF-8}
+        pattern: ${layout-pattern}
+      Policies:
+        SizeBasedTriggeringPolicy:
+          size: "2MB"
+        TimeBasedTriggeringPolicy:
+          interval: "1"
+        DefaultRollOverStrategy:
+          max: 30
+          Delete:
+            basePath: ${log-path}
+            maxDepth: 2
+            IfFileName:
+              glob: "*/app.*.log.gz"
+            IfLastModified:
+              age: "P30D"
+  # 로그 출력 범위 정의
+  Loggers:
+    Root:
+      level: INFO
+      AppenderRef:
+        - ref: Console_Appender
+        - ref: File_Appender
+        - ref: RollingFile_Appender
+    Logger:
+      - name: com.example.demo
+        additivity: false
+        level: DEBUG
+        AppenderRef:
+          - ref: Console_Appender
+          - ref: File_Appender
+          - ref: RollingFile_Appender
+#      - name: org.springframework.security # Security 로그 필요시 사용
+#        additivity: false
+#        level: DEBUG
+#        AppenderRef:
+#          - ref: Console_Appender
+#          - ref: File_Appender
+#          - ref: RollingFile_Appender
