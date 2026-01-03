@@ -24,8 +24,8 @@ public class JWTUtil {
      * 생성자에서 application.properties에 저장된 SecretKey 값을 가져와 설정
      */
     public JWTUtil(@Value("${spring.jwt.secret}") String secret) {
+
         secretKey = new SecretKeySpec(secret.getBytes(StandardCharsets.UTF_8), Jwts.SIG.HS256.key().build().getAlgorithm());
-        log.info("secretKey: " + secretKey);
     }
 
     // 토근 생성
@@ -40,7 +40,6 @@ public class JWTUtil {
         // payload 부분
         Map<String, Object> payloads = new HashMap<>();
         payloads.putAll(valueMap);
-
 
         // 테스트 할때는 plusDays(days) 변경 해야 함
         String jwtStr = Jwts.builder()

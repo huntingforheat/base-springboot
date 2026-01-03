@@ -49,9 +49,9 @@ spring:
     activate:
       on-profile: local
   datasource:
-    url: jdbc:mariadb://192.168.0.132:3307/practice
+    url: jdbc:mariadb://localhost:3307/practice
     username: root
-    password: mAke1357!@
+    password:
 server:
   port: 8090
 logging:
@@ -65,9 +65,9 @@ spring:
     activate:
       on-profile: dev
   datasource:
-    url: jdbc:mariadb://192.168.0.132:3307/practice
+    url: jdbc:mariadb://localhost:3307/practice
     username: root
-    password: mAke1357!@
+    password:
 server:
   port: 8091
 
@@ -78,9 +78,9 @@ spring:
     activate:
       on-profile: prod
   datasource:
-    url: jdbc:mariadb://192.168.0.132:3307/practice
+    url: jdbc:mariadb://localhost:3307/practice
     username: root
-    password: mAke1357!@
+    password:
 server:
   port: 8092
 logging:

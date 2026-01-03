@@ -36,6 +36,9 @@ public class UsersDetailsService implements UserDetailsService {
         List<SimpleGrantedAuthority> authorities;
 
         try {
+            // toList()는 불변 List, 자바16이상부터 사용 가능
+            // collect(Collectors.toList())는 가변 List
+            // 권한 리스트는 수정이 필요 없으므로 toList가 맞음
             authorities = users.getRoleSet().stream()
                     .map(role -> new SimpleGrantedAuthority("ROLE_" + role.name()))
                     .toList();
@@ -43,6 +46,7 @@ public class UsersDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException("Cannot convert roles to authorities", e);
         }
 
+        // TODO: 여기에 로그인 dto 만들기
         return null;
     }
 }
