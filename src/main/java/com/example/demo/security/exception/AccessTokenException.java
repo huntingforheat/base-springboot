@@ -3,7 +3,6 @@ package com.example.demo.security.exception;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletResponse;
-import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.http.MediaType;
 
 import java.io.IOException;

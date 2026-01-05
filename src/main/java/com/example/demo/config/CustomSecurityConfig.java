@@ -99,7 +99,7 @@ public class CustomSecurityConfig {
                         .permitAll())
                 .exceptionHandling(exception -> exception
                         .accessDeniedHandler(customAccessDeniedHandler))
-                .addFilterBefore(new JWTFilter(jwtUtil), UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(new JWTFilter(jwtUtil, usersDetailsService), UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 
@@ -116,7 +116,7 @@ public class CustomSecurityConfig {
                         .authenticated())
                 .exceptionHandling(exception -> exception
                         .accessDeniedHandler(customAccessDeniedHandler))
-                .addFilterBefore(new JWTFilter(jwtUtil), UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(new JWTFilter(jwtUtil, usersDetailsService), UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 

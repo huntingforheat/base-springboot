@@ -21,7 +21,7 @@ class DemoApplicationTests {
 	private void cc() {
 
 		Map<String, Object> claims = Map.of(
-				"userId", "1234"
+				"userId", "siu"
 		);
 
 		String ss = jwtUtil.createJwt(claims, 1);

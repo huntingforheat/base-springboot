@@ -73,8 +73,7 @@ public class Users {
 
     @Column(
             name = "MOD_DTM",
-            columnDefinition = "DATETIME",
-            nullable = false
+            columnDefinition = "DATETIME"
     )
     private LocalDateTime modDtm;
 
