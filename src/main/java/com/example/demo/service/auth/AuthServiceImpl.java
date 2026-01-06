@@ -46,11 +46,7 @@ public class AuthServiceImpl implements AuthService {
                 .regId("api")
                 .build();
 
-        try {
-            usersRepository.save(user);
-        } catch (Exception e) {
-            e.getMessage();
-        }
+        usersRepository.save(user);
 
         return user;
     }

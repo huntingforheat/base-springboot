@@ -17,7 +17,7 @@ public class AuthSignupDTO {
     private String userId;
 
     @NotBlank(message = "비밀번호 값은 필수 입니다.")
-    @Max(60)
+//    @Max(60)
     // SpringSecurity의 passwordEncoder를 사용 했을떄 비밀번호 자릿수는 60자리 고정
     private String password;
 
@@ -30,7 +30,6 @@ public class AuthSignupDTO {
 
     private String phoneNumber;
 
-    @NotNull(message = "가입시간 값은 필수 입니다.")
     private LocalDateTime regDtm;
 
     private String regId;
